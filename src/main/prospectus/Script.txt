@@ -1,0 +1,5 @@
+Dark Spawn - A list of mobs to spawn in dark areas
+Dungeon Spawn - A list of mobs to spawn in regions considered
+a dungeon
+Event Spawn - A list of mobs, (possibly their locations), to
+spawn when triggered
