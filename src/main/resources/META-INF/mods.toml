@@ -4,7 +4,7 @@ license="All rights reserved"
 
 [[mods]]
 modId="tscerberus"
-version="${file.jarVersion}"
+version="0.1a"
 
 displayName="Cerberus"
 
