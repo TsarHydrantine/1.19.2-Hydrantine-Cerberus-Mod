@@ -1,4 +1,0 @@
-Enemy - Standard attack or shoot projectiles
-Follow Me - Follows close to the player
-Creep - Moves between preselected areas to approach player
-Evade - Runs away from the player, can have preselected areas
