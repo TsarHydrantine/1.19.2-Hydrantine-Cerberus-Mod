@@ -1,5 +1,6 @@
 package com.hydrantine.cerberus;
 
+import com.hydrantine.TsMain;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
@@ -16,9 +17,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 // Made with Blockbench 4.5.2
-public class CerberusModel<T extends Entity> extends EntityModel<T> {
+public class CerberusModel extends EntityModel<CerberusEntity> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("modid", "cerberusmodel"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(TsMain.MODID, "cerberusmodel"), "main");
 	private final ModelPart head;
 	private final ModelPart head2;
 	private final ModelPart body;
@@ -75,7 +76,7 @@ public class CerberusModel<T extends Entity> extends EntityModel<T> {
 	}
 
 	@Override
-	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(CerberusEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
 	}
 
