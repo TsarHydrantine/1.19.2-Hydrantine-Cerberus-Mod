@@ -6,8 +6,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod("tscerberus")
 public class TsMain {
-
-	public static final String MODID = "tscerberus";
 	
 	public TsMain() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

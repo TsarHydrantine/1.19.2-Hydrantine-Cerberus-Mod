@@ -11,8 +11,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class TsEntities {
 	
-	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, TsMain.MODID);
+	public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Ref.MODID);
 	
-	public static final RegistryObject<EntityType<CerberusEntity>> CERBERUS = ENTITY_TYPES.register("cerberus", () -> EntityType.Builder.of(CerberusEntity::new, MobCategory.CREATURE).sized(1.0f, 1.0f).build(new ResourceLocation(TsMain.MODID, "cerberus").toString()));
+	public static final RegistryObject<EntityType<CerberusEntity>> CERBERUS = ENTITY_TYPES.register("cerberus", () -> EntityType.Builder.of(CerberusEntity::new, MobCategory.CREATURE).sized(1.2f, 1.2f).build(new ResourceLocation(Ref.MODID, "cerberus").toString()));
 
 }

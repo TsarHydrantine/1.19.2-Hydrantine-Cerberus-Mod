@@ -1,14 +1,14 @@
 package com.hydrantine.sided;
 
 import com.hydrantine.TsEntities;
-import com.hydrantine.TsMain;
+import com.hydrantine.Ref;
 import com.hydrantine.cerberus.CerberusEntity;
 
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = TsMain.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommonSide {
 
 	@SubscribeEvent
