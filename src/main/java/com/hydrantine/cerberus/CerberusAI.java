@@ -41,7 +41,7 @@ public class CerberusAI {
 		brain.addActivity(Activity.CORE, 0, 
 				ImmutableList.of(new AnimalPanic(2.0F), new LookAtTargetSink(45, 90), new MoveToTargetSink()));
 	}
-
+	
 	private static void initIdleActivity(Brain<CerberusEntity> brain) {
 		brain.addActivityWithConditions(Activity.IDLE, 
 			ImmutableList.of(Pair.of(0, new RunSometimes<CerberusEntity>(new SetEntityLookTarget(EntityType.PLAYER, 6.0F), UniformInt.of(30, 60))),
@@ -59,7 +59,7 @@ public class CerberusAI {
 		return true;
 	}
 	//General Traits
-	
+
 	//Cerberus Traits
 	private static void initShakeActivity(Brain<CerberusEntity> dogbrain) {
 		dogbrain.addActivity(Activity.EMERGE, ImmutableList.of());

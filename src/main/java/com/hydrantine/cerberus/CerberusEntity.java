@@ -1,12 +1,17 @@
 package com.hydrantine.cerberus;
 
 import com.google.common.collect.ImmutableList;
+import com.hydrantine.behavior.TsPose;
 import com.mojang.serialization.Dynamic;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializer;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.Pose;
@@ -33,6 +38,11 @@ public class CerberusEntity extends Animal {
 			MemoryModuleType.HURT_BY, MemoryModuleType.HURT_BY_ENTITY, MemoryModuleType.NEAREST_ATTACKABLE,
 			MemoryModuleType.IS_IN_WATER, MemoryModuleType.IS_PANICKING);
 
+	//Store Data
+	public static final EntityDataSerializer<TsPose> CUSTOM_POSE = EntityDataSerializer.simpleEnum(TsPose.class);
+	protected static final EntityDataAccessor<TsPose> CUSTOM_DATA_POSE = SynchedEntityData.defineId(Entity.class, CUSTOM_POSE);
+	protected final SynchedEntityData customEntityData;
+	
 	// Animation States
 	public final AnimationState waggingAnimationState = new AnimationState();
 	public final AnimationState shakingAnimationState = new AnimationState();
@@ -40,6 +50,8 @@ public class CerberusEntity extends Animal {
 
 	public CerberusEntity(EntityType<? extends Animal> type, Level level) {
 		super(type, level);
+		this.customEntityData = new SynchedEntityData(this);
+		this.customEntityData.define(CUSTOM_DATA_POSE, TsPose.IDLE);
 	}
 
 	// AI
@@ -75,8 +87,8 @@ public class CerberusEntity extends Animal {
 
 	public void onSyncedDataUpdated(EntityDataAccessor<?> p_218498_) {
 		if (DATA_POSE.equals(p_218498_)) {
-			Pose pose = this.getPose();
-			if (pose != Pose.EMERGING) {
+			TsPose pose = this.getCustomPose();
+			if (pose == TsPose.SHAKING) {
 				this.shakingAnimationState.start(this.tickCount);
 			} else {
 				this.shakingAnimationState.stop();
@@ -85,6 +97,20 @@ public class CerberusEntity extends Animal {
 
 		super.onSyncedDataUpdated(p_218498_);
 	}
+	
+	//Pose
+	public void setPose(TsPose tspose) {
+		this.customEntityData.set(CUSTOM_DATA_POSE, tspose);
+	}
+
+	public TsPose getCustomPose() {
+		return this.customEntityData.get(CUSTOM_DATA_POSE);
+	}
+
+	public boolean hasPose(TsPose tspose) {
+		return this.getCustomPose() == tspose;
+	}
+	//Pose
 	
 	@Override
 	public void tick() {
